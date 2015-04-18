@@ -209,8 +209,8 @@ padding: 20px
                     <h3 class="section-subheading text-muted">Народжені порушувати правила.</h3>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-4 col-sm-6 portfolio-item">
+            <div class="row" id="issuesBlock">
+               <!-- <div class="col-md-4 col-sm-6 portfolio-item">
                     <a href="#portfolioModal1" class="portfolio-link" data-toggle="modal">
                         <div class="portfolio-hover">
                             <div class="portfolio-hover-content">
@@ -293,7 +293,7 @@ padding: 20px
                         <h4>Нагороджено!</h4>
                         <p class="text-muted">Штраф 255 грн.</p>
                     </div>
-                </div>
+                </div>-->
             </div>
         </div>
     </section>
@@ -630,8 +630,38 @@ padding: 20px
     <script type="text/javascript">
         // When the window has finished loading create our google map below
         google.maps.event.addDomListener(window, 'load', init);
+
+		function loadIssues() {
+			var URL = "http://api.parkinghero.in.ua/issues";
+			var IMAGE_URL = "http://api.parkinghero.in.ua/photos/";
+			var IMAGE_EXTENSION = ".jpg";
+
+			$.ajax(URL, []).done(function(issues) {
+				$.each(issues, function(i, issue) {
+					console.log(issue);
+					var stringIssueBlockContent = '<div class="col-md-4 col-sm-6 portfolio-item">' +
+							'<a href="#portfolioModal1" class="portfolio-link" data-toggle="modal">' +
+							'<div class="portfolio-hover">' +
+							'<div class="portfolio-hover-content">' +
+							'<i class="fa fa-plus fa-3x"></i>' +
+							'</div>' +
+							'</div>' +
+							'<img src="' + IMAGE_URL + issue.photoId + IMAGE_EXTENSION + '" class="img-responsive" alt="">' +
+							'</a>' +
+							'<div class="portfolio-caption">' +
+							'<h4>' + issue.title + '</h4>' +
+							'<p class="text-muted">' + issue.description + '</p>' +
+							'</div>' +
+							'</div>';
+
+					var issueContent = $.parseHTML(stringIssueBlockContent);
+					$('#issuesBlock').append(issueContent);
+				});
+			});
+		}
     
         function init() {
+			loadIssues();
             // Basic options for a simple Google Map
             // For more options see: https://developers.google.com/maps/documentation/javascript/reference#MapOptions
             var mapOptions = {
