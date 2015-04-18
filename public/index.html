@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Agency - Start Bootstrap Theme</title>
+    <title>Герої Паркування</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -317,36 +317,38 @@ padding: 20px
                 <div class="col-lg-12">
                     <form name="sentMessage" class="issue-form" novalidate>
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                                 <div class="form-group">
                                     <input type="text" class="form-control validate" placeholder="Subject *" name="subject" required 
                                         data-validation-message="Please set subject.">
                                     <p class="help-block text-danger"></p>
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" class="form-control validate" placeholder="Your Name *" name="userName" required 
+                                    <input type="text" class="form-control-1 validate" placeholder="Your Name *" name="userName" required 
                                         data-validation-message="Please enter your name.">
                                     <p class="help-block text-danger"></p>
                                 </div>
                                 <div class="form-group">
-                                    <input type="email" class="form-control validate" placeholder="Your Email *" name="userEmail" required
+                                    <input type="email" class="form-control-1 validate" placeholder="Your Email *" name="userEmail" required
                                         data-validation-message="Please enter your email address.">
                                     <p class="help-block text-danger"></p>
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" class="form-control validate" placeholder="License Plate Number *" name="licensePlateNumber" required 
+                                    <input type="text" class="form-control-1 validate" placeholder="License Plate Number *" name="licensePlateNumber" required 
                                         data-validation-message="Please enter license plate of mudak.">
                                     <p class="help-block text-danger"></p>
                                 </div>
+                                 <div class="col-md-4">
                                 <div class="form-group">
                                     <div class="input-group date datetimepicker">
-                                        <input type="text" class="form-control validate" placeholder="Photographing Date *" name="photographingDate" required/>
+                                        <input type="text" class="form-control-1 validate" placeholder="Photographing Date *" name="photographingDate" required/>
                                         <span class="input-group-addon">
                                             <span class="glyphicon glyphicon-calendar"></span>
                                         </span>
                                     </div>
                                 </div>
                                 <div class="form-group">
+                                    <div class="form-control-1">
                                     <select name="violationType" class="selectpicker">
                                       <option value="a">Паркування другим рядом</option>
                                       <option value="b">Паркування під знаком "зупинка заборонена"</option>
@@ -355,14 +357,17 @@ padding: 20px
                                       <option value="e">Паркування на місці для інвалідів</option>
                                       <option value="f">Паркування на газоні</option>
                                     </select>
+                                    </div>
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" class="form-control validate" placeholder="Адреса" name="address" required 
+                                    <input type="text" class="form-control- validate" placeholder="Адреса" name="address" required 
                                         data-validation-message="Адреса">
                                     <p class="help-block text-danger"></p>
                                 </div>
+
                             </div>
-                            <div class="col-md-6">
+
+                            <div class="col-md-4">
                                 <div class="form-group">
                                     <input type="hidden" name="photoFileName" class="validate"/>
                                     <span class="btn btn-xl btn-file upload-photo-button">
@@ -374,10 +379,14 @@ padding: 20px
                                         </form>
                                     </span>
                                 </div>
+                            </div>
+                            <div class="col-md-8">
                                 <div class="form-group">
                                     <textarea class="form-control" placeholder="Додайте коментар *" name="description" required data-validation-message="Додайте коментар."></textarea>
                                     <p class="help-block text-danger"></p>
                                 </div>
+                                </div>
+                                <div class="col-md-4">
                                 <div class="text-center">
                                     <div id="success"></div>
                                     <button type="submit" class="btn btn-xl">ВИЗНАТИ ГЕРОЯ</button>
