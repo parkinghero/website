@@ -125,6 +125,12 @@
             border: solid 1px #aaa;
             border-radius: 10px;
         }
+
+        .blockUI {
+             color: none !important; 
+             border: none !important; 
+             background-color: none !important; 
+        }
     </style>
 
 </head>
@@ -135,7 +141,7 @@
 
     <nav class="navbar navbar-default navbar-fixed-top">
         <img class="logo-car" src="../img/logo.png" width="100" height="100"/>
-	<style type="img/css">
+	<style>
 
 div.block1 {
 width: 260px;
@@ -313,24 +319,28 @@ padding: 20px
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Subject *" name="subject" required data-validation-required-message="Please set subject.">
+                                    <input type="text" class="form-control validate" placeholder="Subject *" name="subject" required 
+                                        data-validation-message="Please set subject.">
                                     <p class="help-block text-danger"></p>
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Your Name *" name="userName" required data-validation-required-message="Please enter your name.">
+                                    <input type="text" class="form-control validate" placeholder="Your Name *" name="userName" required 
+                                        data-validation-message="Please enter your name.">
                                     <p class="help-block text-danger"></p>
                                 </div>
                                 <div class="form-group">
-                                    <input type="email" class="form-control" placeholder="Your Email *" name="userEmail" required data-validation-required-message="Please enter your email address.">
+                                    <input type="email" class="form-control validate" placeholder="Your Email *" name="userEmail" required
+                                        data-validation-message="Please enter your email address.">
                                     <p class="help-block text-danger"></p>
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="License Plate Number *" name="licensePlateNumber" required data-validation-required-message="Please enter license plate of mudak.">
+                                    <input type="text" class="form-control validate" placeholder="License Plate Number *" name="licensePlateNumber" required 
+                                        data-validation-message="Please enter license plate of mudak.">
                                     <p class="help-block text-danger"></p>
                                 </div>
                                 <div class="form-group">
                                     <div class="input-group date datetimepicker">
-                                        <input type="text" class="form-control" placeholder="Photographing Date *" name="photographingDate" required/>
+                                        <input type="text" class="form-control validate" placeholder="Photographing Date *" name="photographingDate" required/>
                                         <span class="input-group-addon">
                                             <span class="glyphicon glyphicon-calendar"></span>
                                         </span>
@@ -347,21 +357,25 @@ padding: 20px
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Адреса" name="address" required data-validation-required-message="Адреса">
+                                    <input type="text" class="form-control validate" placeholder="Адреса" name="address" required 
+                                        data-validation-message="Адреса">
                                     <p class="help-block text-danger"></p>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <input type="hidden" name="photoFileName"/>
+                                    <input type="hidden" name="photoFileName" class="validate"/>
                                     <span class="btn btn-xl btn-file upload-photo-button">
                                         <span class="upload-button-text">ДОДАТИ ФОТО</span>
                                         <img class="photo-preview hidden" src=""/>
-                                        <input type="file" class="upload-photo-input"/>
+                                        <form>
+                                            <input type="file" class="upload-photo-input"/>
+                                            <input type="submit" style="display:none" class="upload-photo-input"/>
+                                        </form>
                                     </span>
                                 </div>
                                 <div class="form-group">
-                                    <textarea class="form-control" placeholder="Додайте коментар *" name="description" required data-validation-required-message="Додайте коментар."></textarea>
+                                    <textarea class="form-control" placeholder="Додайте коментар *" name="description" required data-validation-message="Додайте коментар."></textarea>
                                     <p class="help-block text-danger"></p>
                                 </div>
                                 <div class="text-center">
@@ -591,9 +605,6 @@ padding: 20px
     <script src="js/classie.js"></script>
     <script src="js/cbpAnimatedHeader.js"></script>
 
-    <!-- Contact Form JavaScript -->
-    <script src="js/jqBootstrapValidation.js"></script>
-
     <!-- Custom Theme JavaScript -->
     <script src="js/agency.js"></script>
 
@@ -621,6 +632,10 @@ padding: 20px
 
     <!-- jquery.blockUI.js -->
     <script type="text/javascript" src="js/vendor/jquery.blockUI.js"></script>
+    <script type="text/javascript">
+        $.blockUI.defaults.message='<img src="img/ajax-loader.gif"/>';
+    </script>
+
     <script type="text/javascript" src="js/vendor/jquery.form.min.js"></script>
 
     <!-- init scripts -->

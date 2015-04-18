@@ -6,50 +6,8 @@ function initApp() {
 function initIssueForm() {
   var $form = $('.issue-form');
 
-  buildUploader($form);
-
-  var options = { 
-      url: config.issuesUrl, 
-      type: 'POST',
-      dataType: 'json',
-      beforeSubmit: function() {
-
-      },
-      success: function() {
-
-      }
-  }; 
-  
-  // bind form using 'ajaxForm' 
-  $('.issue-form').ajaxForm(options);
-}
-
-
-function buildUploader($form) {
-
-  $form.find('.upload-photo-input').fileupload({
-    url: config.photosUrl,
-    dataType: 'json',
-    add: function(event, data) {
-      $.blockUI();
-      data.submit();
-    },
-    error: function() {
-      $.unblockUI();
-      alert('Вибачте, у нас помилка..:(');
-    },
-    done: function (event, response) {
-      $.unblockUI();
-      
-      // if (e) return alert('Error! Sorry, we have temporary problems...');
-
-      $form.find('.upload-photo-button').addClass('have-photo');
-      $form.find('.upload-button-text').hide();
-      $form.find('[name="photoFileName"]').val(response.result.photoFileName);
-      $form.find('.photo-preview').removeClass('hidden').show().attr('src', config.apiUrl + '/photos/orig/' + response.result.photoFileName).show();
-    }
-  });
-
+  var form = new PHForm($form);
+  form.init();
 }
 
 function loadIssues() {
@@ -76,4 +34,82 @@ function loadIssues() {
       $('#issuesBlock').append(stringIssueBlockContent);
     });
   });
+}
+
+
+function PHForm($elem) {
+  this.$this = $elem;
+};
+
+PHForm.prototype = {
+  init: function() {
+    var $form = this.$this;
+    var that = this;
+
+    this._buildUploader();
+
+    $form.ajaxForm({ 
+        url: config.issuesUrl, 
+        type: 'POST',
+        dataType: 'json',
+        beforeSubmit: this.validate.bind(this),
+        success: function() {
+          // that.clear();
+        }
+    });
+  },
+  clear: function() {
+    var $form = this.$this;
+
+    $form.find('input[name]').val('');
+    $form.find('select').each(function() {
+      $(this).val( $(this).find('option:first').val() );
+    });
+  },
+  validate: function() {
+    var $form = this.$this;
+
+    var isValid = true;
+
+    $form.find(".validate").each(function() {
+      var $this = $(this);
+      var val = $this.val();
+
+      if (val) return;
+
+      var $group = $this.closest('.form-group');
+      $group.addClass('has-error');
+      $this.one('change', function() {
+        $group.removeClass('has-error');
+      });
+      isValid = false;
+    });
+
+    return isValid;
+  },
+  _buildUploader: function() {
+    var $form = this.$this;
+
+    $form.find('.upload-photo-input').fileupload({
+      url: config.photosUrl,
+      dataType: 'json',
+      add: function(event, data) {
+        $form.block();
+        data.submit();
+      },
+      error: function() {
+        $form.unblock();
+        alert('Вибачте, у нас помилка..:(');
+      },
+      done: function (event, response) {
+        $form.unblock();
+        // if (e) return alert('Error! Sorry, we have temporary problems...');
+
+        $form.find('.upload-photo-button').addClass('have-photo');
+        $form.find('.upload-button-text').hide();
+        $form.find('[name="photoFileName"]').val(response.result.photoFileName);
+        $form.find('.photo-preview').removeClass('hidden').show().attr('src', config.apiUrl + '/photos/orig/' + response.result.photoFileName).show();
+      }
+    });
+  }
 }
