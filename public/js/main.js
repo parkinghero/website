@@ -11,28 +11,8 @@ function initIssueForm() {
 }
 
 function loadIssues() {
-  var URL = config.issuesUrl;
-  var IMAGE_URL = config.photosUrl;
-
-  $.ajax(URL, []).done(function(issues) {
-    $.each(issues, function(i, issue) {
-      var stringIssueBlockContent = '<div class="col-md-4 col-sm-6 portfolio-item">' +
-          '<a href="#portfolioModal1" class="portfolio-link" data-toggle="modal">' +
-          '<div class="portfolio-hover">' +
-          '<div class="portfolio-hover-content">' +
-          '<i class="fa fa-plus fa-3x"></i>' +
-          '</div>' +
-          '</div>' +
-          '<img src="' + IMAGE_URL + '/' + issue.photoFileName + '" class="img-responsive" alt="">' +
-          '</a>' +
-          '<div class="portfolio-caption">' +
-          '<h4>' + issue.title + '</h4>' +
-          '<p class="text-muted">' + issue.description + '</p>' +
-          '</div>' +
-          '</div>';
-
-      $('#issuesBlock').append(stringIssueBlockContent);
-    });
+  $.ajax(config.issuesUrl + '?limit=6', []).done(function(issues) {
+    new PHIssues($('#issuesBlock')).rebuild( issues.slice(0, 6).reverse() );
   });
 }
 
@@ -52,9 +32,16 @@ PHForm.prototype = {
         url: config.issuesUrl, 
         type: 'POST',
         dataType: 'json',
-        beforeSubmit: this.validate.bind(this),
+        beforeSubmit: function() {
+          $.blockUI();
+          return that.validate.bind(this);
+        },
         success: function() {
+          $.unblockUI();
           // that.clear();
+        },
+        error: function() {
+          $.unblockUI();
         }
     });
   },
@@ -108,8 +95,47 @@ PHForm.prototype = {
         $form.find('.upload-photo-button').addClass('have-photo');
         $form.find('.upload-button-text').hide();
         $form.find('[name="photoFileName"]').val(response.result.photoFileName);
-        $form.find('.photo-preview').removeClass('hidden').show().attr('src', config.apiUrl + '/photos/orig/' + response.result.photoFileName).show();
+        $form.find('.photo-preview').removeClass('hidden').show().attr('src', config.apiUrl + '/photos/thumb/' + response.result.photoFileName).show();
       }
     });
+  }
+}
+
+function PHIssues($issues, issues) {
+  this.$issues = $issues;
+  this.issues = issues;
+}
+
+PHIssues.prototype = {
+  destroy: function() {
+    this.$issues.empty();
+  },
+  rebuild: function(data) {
+    this.destroy();
+    this.build(data);
+  },
+  build: function(issues) {
+    var $issues = this.$issues;
+
+    issues.forEach(function(data) {
+      var issue = new PHIssue();
+      $issues.append(issue.$issue);
+      issue.build(data);
+    });
+  }
+};
+
+
+function PHIssue() {
+  this.$issue = $( $('#issue-template').html() );
+}
+
+PHIssue.prototype = {
+  build: function(data) {
+    var $issue = this.$issue;
+
+    $issue.find('.issue-photo').attr('src', config.photosUrl + '/thumb/' + data.photoFileName);
+    $issue.find('.issue-subject').html(data.subject);
+    $issue.find('.issue-description').html(data.description);
   }
 }
