@@ -122,6 +122,7 @@ function PHIssues($issues, issues) {
 }
 
 PHIssues.prototype = {
+  cols: 3,
   destroy: function() {
     this.$issues.empty();
   },
@@ -129,12 +130,24 @@ PHIssues.prototype = {
     this.destroy();
     this.build(data);
   },
+  _newRow: function() {
+    return $('<div class="row">');
+  },
   build: function(issues) {
     var $issues = this.$issues;
+    var $row = this._newRow();
+    var that = this;
 
-    issues.forEach(function(data) {
+    issues.forEach(function(data, i) {
       var issue = new PHIssue();
-      $issues.append(issue.$issue);
+
+      $row.append(issue.$issue);
+
+      if ( !((i+1)%3) ) { // we have 3 cols
+        $issues.append($row);
+        $row = that._newRow();
+      }
+
       issue.build(data);
     });
   }
@@ -181,9 +194,9 @@ function initBigMap() {
   $map.gmap3({
       map: {
          options: {
-              zoom: 6,
+              zoom: 11,
               scrollwheel: true,
-              center: [49.1439909,31.6966257],
+              center: [50.4388945,30.527884],
               styles: [   {       featureType:'water',        stylers:[{color:'#74c9be'},{visibility:'on'}]   },{     featureType:'landscape',        stylers:[{color:'#f2f2f2'}] },{     featureType:'road',     stylers:[{saturation:-100},{lightness:45}]  },{     featureType:'road.highway',     stylers:[{visibility:'simplified'}] },{     featureType:'road.arterial',        elementType:'labels.icon',      stylers:[{visibility:'off'}]    },{     featureType:'administrative',       elementType:'labels.text.fill',     stylers:[{color:'#444444'}] },{     featureType:'transit',      stylers:[{visibility:'off'}]    },{     featureType:'poi',      stylers:[{visibility:'off'}]    }]
          }  
       }
