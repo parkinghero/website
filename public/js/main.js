@@ -33,7 +33,7 @@ PHForm.prototype = {
         type: 'POST',
         dataType: 'json',
         beforeSubmit: function() {
-          var isValid = that.validate.bind(this);
+          var isValid = that.validate(this);
           if (isValid) {
             $.blockUI();
           } else {
@@ -41,7 +41,7 @@ PHForm.prototype = {
           }
         },
         success: function() {
-          $msg = $('<h1>Вітаємо! Вашу заявку успішно відправлено.</h1><br><button class="btn btn-success">OK!</button>');
+          $msg = $('<h5>Вітаємо! Вашу заявку успішно відправлено.</h5><br><button class="btn bbtn-xs tn-success">OK!</button>');
           $('.blockUI.blockMsg').html($msg).find('button').on('click', function() {
             $.unblockUI();
             that.clear();
@@ -50,7 +50,7 @@ PHForm.prototype = {
         },
         error: function() {
           $('.blockUI.blockMsg').html(
-            '<h1>Отакої!... У нас сталася помилка</h1><br><button onclick="$.unblockUI();" class="btn btn-danger">Спробувати пізніше</button>'
+            '<h5>Отакої!... У нас сталася помилка</h5><br><button onclick="$.unblockUI();" class="btn btn-xs btn-danger">Спробувати пізніше</button>'
           );
         }
     });
@@ -240,4 +240,10 @@ function initBigMap() {
       });
     });
   }, 'json');
+}
+
+
+
+function initLawyersPage() {
+  if (!$('.page-lawyers').length) return;
 }

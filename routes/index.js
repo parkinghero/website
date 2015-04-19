@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var config = require('../config');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -20,7 +21,7 @@ router.get('/agreements', function(req, res, next) {
 });
 
 router.get('/lawyers', function(req, res, next) {
-  res.render('layout', { page: 'lawyers' });
+  res.render('layout', { page: 'lawyers', apiUrl: config.apiUrl });
 });
 
 router.get('/privacy', function(req, res, next) {
