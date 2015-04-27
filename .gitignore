@@ -3,3 +3,5 @@ npm-debug.log
 config/config.js
 public/config/config.js
 config/index.js
+bower_components/
+dist/
