@@ -2,6 +2,8 @@
   "name": "parkinghero",
   "version": "1.0.0",
   "devDependencies": {
+    "express": "^4.12.3",
+    "fortune": "^0.2.4",
     "grunt": "^0.4.5",
     "grunt-contrib-clean": "^0.6.0",
     "grunt-contrib-coffee": "^0.13.0",
@@ -13,9 +15,11 @@
     "grunt-contrib-requirejs": "^0.4.4",
     "grunt-contrib-stylus": "^0.21.0",
     "grunt-contrib-watch": "^0.6.1",
+    "grunt-express-server": "^0.5.1",
     "grunt-processhtml": "^0.3.7",
     "grunt-regarde": "^0.1.1",
     "grunt-slm": "0.0.1",
-    "lodash-cli": "^3.7.0"
+    "lodash-cli": "^3.7.0",
+    "nedb": "^1.1.2"
   }
 }

@@ -1,10 +1,13 @@
-nav.navbar.navbar-default
-  .container-fluid
-    .navbar-header
-      a.navbar-brand href="/" Parking Hero
-    .collapse.navbar-collapse
-      ul.nav.navbar-nav.navbar-right
-        li
-          a href="/map" Мапа
-        li
-          a href="/about" Про нас
+section.container
+  nav.navbar.navbar-default
+    .container-fluid
+      .navbar-header
+        a.navbar-brand href="/" Parking Hero
+      .collapse.navbar-collapse
+        ul.nav.navbar-nav.navbar-right
+          li
+            a href="/map" Мапа
+          li
+            a href="/about" Про нас
+
+  .row.ph-issues

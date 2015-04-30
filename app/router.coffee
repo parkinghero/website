@@ -4,13 +4,17 @@ define (require, exports, module) ->
   # External dependencies.
   Backbone = require "backbone"
   Layout = require "layoutmanager"
-  Issue = require "modules/issue/view"
 
-  M = Backbone.Model.extend
-      defaults:
-        name: 'Maks'
+  Issue = require "modules/issues/index"
 
-  window.issue = new Issue { model: new M }
+  c = new Backbone.Collection [
+    {description: "Tim", date: "25/02/2015"},
+    {description: "Ida", date: "21/02/2015"},
+    {description: "Rob", date: "12/02/2015"}
+  ]
+
+  window.c = c
+
 
   # Defining the application router.
   Router = Backbone.Router.extend
@@ -18,6 +22,8 @@ define (require, exports, module) ->
       Layout = Backbone.Layout.extend
         el: "main"
         template: require "template!./templates/main"
+        views:
+          ".ph-issues": new Issue.Views.List { collection: c }
 
       new Layout().render()
 

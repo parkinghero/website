@@ -10,8 +10,8 @@ module.exports = ->
     "stylus"
     "processhtml"
     "slm"
-    "connect"
-    "regarde"
+    "express"
+    "watch"
   ]
 
   # When running the default Grunt command, just lint the code.

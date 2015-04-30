@@ -15,5 +15,10 @@ module.exports = ->
           src: ["app/**", "!app/**/*.{coffee,slm,styl}"]
           dest: "dist/"
         }
+        {
+          expand: true
+          src: "api/**"
+          dest: "dist/"
+        }
       ]
 
