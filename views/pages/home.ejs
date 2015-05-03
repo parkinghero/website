@@ -29,18 +29,18 @@
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <input type="text" class="form-control validate" placeholder="Your Name *" name="userName" required 
-                                            data-validation-message="Введіть Ваше ім’я.">
+                                        <input type="text" class="form-control validate" placeholder="Як Вас звати? *" name="userName" required 
+                                            data-validation-message="Як Вас звати?">
                                         <p class="help-block text-danger"></p>
                                     </div>
                                     <div class="form-group">
-                                        <input type="email" class="form-control validate" placeholder="Your Email *" name="userEmail" required
-                                            data-validation-message="Введіть email">
+                                        <input type="email" class="form-control validate" placeholder="Ваш email *" name="userEmail" required
+                                            data-validation-message="Будь-ласка, введіть Ваш email">
                                         <p class="help-block text-danger"></p>
                                     </div>
                                     <div class="form-group">
                                         <input type="text" class="form-control validate" placeholder="Номер авто *" name="licensePlateNumber" required 
-                                            data-validation-message="Please enter license plate of mudak.">
+                                            data-validation-message="Будь-ласка, введіть номер автомобіля порушника.">
                                         <p class="help-block text-danger"></p>
                                     </div>
                                 </div>
@@ -54,8 +54,9 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <select name="violationType" class="selectpicker" style="width: 100%">
-                                          <option value="" selected></option>
+                                        <select name="
+                                        " class="selectpicker" style="width: 100%">
+                                          <option value="" selected>Тип:</option>
                                           <option value="a">Паркування другим рядом</option>
                                           <option value="b">Паркування під знаком "зупинка заборонена"</option>
                                           <option value="c">Паркування на тротуарі</option>
@@ -67,7 +68,7 @@
                                     <div class="form-group">
                                         <input type="hidden" name="lng"/>
                                         <input type="hidden" name="lat"/>
-                                        <select class="validate" name="address" style="width: 100%" required>
+                                        <select placeholder="Select an option" class="validate" name="address" style="width: 100%" required>
                                           <option value="" selected="selected"></option>
                                         </select>
                                     </div>
@@ -96,7 +97,7 @@
                                 <div class="col-md-4">
                                     <div class="text-center">
                                         <div id="success"></div>
-                                        <button type="submit" class="btn btn-xl">ВИЗНАТИ ГЕРОЯ</button>
+                                        <button type="submit" class="btn btn-xl">ПОДАТИ ЗАЯВУ</button>
                                     </div>
                                 </div>
                             </div>

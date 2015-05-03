@@ -12,7 +12,7 @@ function initIssueForm() {
 
 function loadIssues() {
   $.ajax(config.issuesUrl + '?limit=6', []).done(function(issues) {
-    new PHIssues($('#issuesBlock')).rebuild( issues.slice(0, 6).reverse() );
+    new PHIssues($('#issuesBlock')).rebuild( issues.slice(0, 6) );
   });
 }
 
@@ -60,7 +60,10 @@ PHForm.prototype = {
     $form.find('input[name]').val('');
     $form.find('textarea').val("");
 
-    $form.find('[name="address"]').select2("val", "");
+    //$form.find('[name="address"]').select2("val", "");
+    $form.find('[name="address"]').select2( placeholder: "Select a state",
+  allowClear: true);
+    
     $form.find('[name="violationType"]').select2("val", "");
 
     $form.find('.upload-photo-button').removeClass('have-photo');
