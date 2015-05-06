@@ -61,8 +61,7 @@ PHForm.prototype = {
     $form.find('textarea').val("");
 
     //$form.find('[name="address"]').select2("val", "");
-    $form.find('[name="address"]').select2( placeholder: "Select a state",
-  allowClear: true);
+    $form.find('[name="address"]').select2({ placeholder: "Select a state", allowClear: true });
     
     $form.find('[name="violationType"]').select2("val", "");
 
