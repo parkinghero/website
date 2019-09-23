@@ -4,3 +4,5 @@ THIS IS PROTOTYPE AND DEMONSTRATION OF IDEA. CODE WAS WRITTEN BY ONE PROGRAMMER 
 PLEASE, BE KIND:)
 
 at this point project (parkinghero) is closed
+
+![Screenshot](/screen.jpeg)
